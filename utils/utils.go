@@ -84,7 +84,7 @@ func GetRegion(profile string) (string, error) {
 
 	section, err := cfg.GetSection(sectionName)
 	if err != nil {
-		return "", fmt.Errorf("Could not find AWS region in %s", path)
+		return "", fmt.Errorf("could not find AWS region in %s", path)
 	}
 
 	return section["region"], nil
