@@ -185,11 +185,12 @@ func WaitForListen(u *url.URL, timeout time.Duration) error {
 		Factor: 1.5,
 	}
 
+	ticker := time.NewTicker(b.Duration())
 	for {
 		select {
 		case <-timedout:
 			return errors.Errorf("timed out after %s", timeout)
-		case <-time.After(b.Duration()):
+		case <-ticker.C:
 			if IsListening(u) {
 				return nil
 			}
